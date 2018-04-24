@@ -2,6 +2,9 @@
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,10 +25,10 @@ public class Board extends JPanel implements ActionListener{
     
     private int deltaTime;
     private Timer timer;
-    private Node[][] matrix;
     private Snake snake;
     private Food food;
     private Node node;
+    private MyKeyAdapter keyAdapter;
     
     
     public Board() {
@@ -36,7 +39,7 @@ public class Board extends JPanel implements ActionListener{
     public void initValues() {
         setFocusable(true);
         deltaTime = 500;
-        
+        snake = new Snake();
     }
     
     public void initGame() {
@@ -53,8 +56,10 @@ public class Board extends JPanel implements ActionListener{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        snake.draw(g, node);
-        food.draw(g, node);
+        if( snake != null) {
+            snake.draw(g, squareWidth(), squareHeight());
+        }
+        //food.draw(g, node);
     }
     
     private int squareWidth() {
@@ -63,6 +68,31 @@ public class Board extends JPanel implements ActionListener{
     
     private int squareHeight() {
         return getHeight() / NUM_ROWS;
+    }
+    
+    class MyKeyAdapter extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_LEFT:
+                        snake.move()
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        
+                        break;
+                    case KeyEvent.VK_UP:
+                        
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        
+                        break;
+                    case KeyEvent.VK_P:
+                         
+                    default:
+                        break;
+                }
+            repaint();
+        }
     }
     
     

@@ -28,6 +28,7 @@ public class Game extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         scoreBoard1 = new ScoreBoard();
+        board1 = new Board();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuGame = new javax.swing.JMenu();
         jMenuInitGame = new javax.swing.JMenuItem();
@@ -39,6 +40,7 @@ public class Game extends javax.swing.JFrame {
 
         scoreBoard1.setText("scoreBoard1");
         getContentPane().add(scoreBoard1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
 
         jMenuGame.setText("Game");
 
@@ -89,6 +91,7 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Board board1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuGame;
     private javax.swing.JMenuItem jMenuInitGame;
