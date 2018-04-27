@@ -28,7 +28,7 @@ public class Game extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         scoreBoard1 = new ScoreBoard();
-        board1 = new Board();
+        board = new Board();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuGame = new javax.swing.JMenu();
         jMenuInitGame = new javax.swing.JMenuItem();
@@ -40,12 +40,19 @@ public class Game extends javax.swing.JFrame {
 
         scoreBoard1.setText("scoreBoard1");
         getContentPane().add(scoreBoard1, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
+
+        board.setPreferredSize(new java.awt.Dimension(481, 481));
+        getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         jMenuGame.setText("Game");
 
         jMenuInitGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuInitGame.setText("Init Game");
+        jMenuInitGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuInitGameActionPerformed(evt);
+            }
+        });
         jMenuGame.add(jMenuInitGame);
 
         jMenuBar1.add(jMenuGame);
@@ -54,6 +61,10 @@ public class Game extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuInitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInitGameActionPerformed
+        board.initGame();
+    }//GEN-LAST:event_jMenuInitGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,7 +102,7 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Board board1;
+    private Board board;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuGame;
     private javax.swing.JMenuItem jMenuInitGame;

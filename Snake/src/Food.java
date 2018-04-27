@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /*
@@ -13,14 +14,30 @@ import java.awt.Graphics;
  */
 public class Food {
     
-    Node node;
+    private Node node;
     
-    public Food() {
-        
+    public Food(Snake snake) {
+        node = new Node(getRandomRow(), getRandomCol());
     }
     
-    public void draw(Graphics g, Node node) {
-        
+    public void draw(Graphics g, int squareWidth, int squareHeight) {
+        Util.drawSquare(g, node, Color.red, squareWidth, squareHeight);
+    }
+    
+    public int getRandomRow() { 
+        return (int) (Math.random() * Board.NUM_ROWS);
+    }
+    
+    public int getRandomCol() {
+        return (int) (Math.random() * Board.NUM_COLS);
+    }
+    
+    public int getRow() {
+        return node.getRow();
+    }
+    
+    public int getCol() {
+        return node.getCol();
     }
     
 }

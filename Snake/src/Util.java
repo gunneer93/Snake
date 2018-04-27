@@ -15,8 +15,8 @@ import java.awt.Graphics;
 public class Util {
     
     public static void drawSquare(Graphics g, Node node, Color color, int squareWidth, int squareHeight) {
-        int x = node.col * squareWidth;
-        int y = node.row * squareHeight;
+        int x = node.getCol() * squareWidth;
+        int y = node.getRow() * squareHeight;
         g.setColor(color);
         g.fillRect(x + 1, y + 1, squareWidth - 2, squareHeight - 2);
         g.setColor(color.brighter());
@@ -25,6 +25,11 @@ public class Util {
         g.setColor(color.darker());
         g.drawLine(x + 1, y + squareHeight - 1, x + squareWidth - 1, y + squareHeight - 1);
         g.drawLine(x + squareWidth - 1, y + squareHeight - 1, x + squareWidth - 1, y + 1);
+    }
+    
+    public static void drawBorder(Graphics g, Color color, int squareWidth, int squareHeight) {
+        g.setColor(Color.blue);
+        g.drawRect(0, 0, Board.NUM_COLS * squareWidth, Board.NUM_ROWS * squareHeight);
     }
     
 }
