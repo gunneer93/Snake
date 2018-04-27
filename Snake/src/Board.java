@@ -43,7 +43,7 @@ public class Board extends JPanel implements ActionListener{
     
     public void initValues() {
         requestFocusInWindow();
-        deltaTime = 400; 
+        deltaTime = 250; 
     }
     
     public void initGame() {
@@ -81,6 +81,7 @@ public class Board extends JPanel implements ActionListener{
             
             if(eat()) {
                 snake.move(true);
+                food = new Food(snake);
             } else {
                 snake.move(false);
             }
