@@ -29,6 +29,7 @@ public class Board extends JPanel implements ActionListener{
     private Timer timer;
     private Snake snake;
     private Food food;
+    private SpecialFood specialFood;
     private Node node;
     private MyKeyAdapter keyAdapter;
     private PauseDialog pauseDialog;
@@ -43,7 +44,7 @@ public class Board extends JPanel implements ActionListener{
     
     public void initValues() {
         requestFocusInWindow();
-        deltaTime = 250; 
+        deltaTime = 110; 
     }
     
     public void initGame() {
@@ -78,7 +79,6 @@ public class Board extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!snake.hitWall()) {
-            
             if(eat()) {
                 snake.move(true);
                 food = new Food(snake);
@@ -101,7 +101,10 @@ public class Board extends JPanel implements ActionListener{
         if( food != null) {
             food.draw(g, squareWidth(), squareHeight());
         }
-        Util.drawBorder(g, Color.RED, squareWidth(), squareHeight());
+        if( specialFood != null) {
+            specialFood.draw(g, squareWidth(), squareHeight());
+        }
+        Util.drawBorder(g, Color.blue, squareWidth(), squareHeight());
     }
     
     private int squareWidth() {
