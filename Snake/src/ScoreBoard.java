@@ -17,17 +17,17 @@ public class ScoreBoard extends JLabel{
     
     public ScoreBoard() {
         super();
-        score = 0;
+        score = 3;
     }
     
     public void increment(int points) {
         score += points;
-        setText("Score:" + score);
+        setText("Length:" + score);
     }
     
     public void reset() {
         score = 0;
-        setText("Score:" + 0);
+        setText("Length:" + 0);
     }
     
     public int getScore() {

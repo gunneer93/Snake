@@ -16,13 +16,19 @@ public class Snake {
 
     private ArrayList<Node> listNodes;
     private DirectionType direction;
+    private int countGrowSnake;
 
     public Snake() {
+        countGrowSnake = 0;
         direction = DirectionType.RIGHT;
         listNodes = new ArrayList<Node>(3);
         listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2));
         listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2 - 1));
         listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2 - 2));
+    }
+
+    public void setCountGrowSnake(int countGrowSnake) {
+        this.countGrowSnake = countGrowSnake;
     }
 
     public void draw(Graphics g, int squareWidth, int squareHeight) {
@@ -31,13 +37,11 @@ public class Snake {
         }
     }
 
-    public void move(boolean eat) {
+    public void move() {
         Node head = listNodes.get(0);
         switch (direction) {
             case UP:
-                if (direction != DirectionType.DOWN) {
-                    listNodes.add(0, new Node(head.getRow() - 1, head.getCol()));
-                }
+                listNodes.add(0, new Node(head.getRow() - 1, head.getCol()));
                 break;
             case DOWN:
                 listNodes.add(0, new Node(head.getRow() + 1, head.getCol()));
@@ -49,18 +53,48 @@ public class Snake {
                 listNodes.add(0, new Node(head.getRow(), head.getCol() - 1));
                 break;
         }
-        if (!eat) {
+        if (countGrowSnake == 0) {
             listNodes.remove(listNodes.size() - 1);
+        } else {
+            countGrowSnake--;
         }
         
     }
+    
+    public Node getNextNode() {
+        Node head = listNodes.get(0);
+        Node nextNode = null;
+        switch (direction) {
+            case UP:
+                nextNode = new Node(head.getRow() - 1, head.getCol());
+                break;
+            case DOWN:
+                nextNode = new Node(head.getRow() + 1, head.getCol());
+                break;
+            case RIGHT:
+                nextNode = new Node(head.getRow(), head.getCol() + 1);
+                break;
+            case LEFT:
+                nextNode = new Node(head.getRow(), head.getCol() - 1);
+                break;
+        }
+        return nextNode;
+    }
 
     public boolean hitWall() {
-        Node head = listNodes.get(0);
-        if (head.getRow() < 0 || head.getRow() >= Board.NUM_ROWS) {
+        if (getNextNode().getRow() < 0 || getNextNode().getRow() >= Board.NUM_ROWS) {
             return true;
         } else {
-            if (head.getCol() < 0 || head.getCol() >= Board.NUM_COLS) {
+            if (getNextNode().getCol() < 0 || getNextNode().getCol() >= Board.NUM_COLS) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean hitSnake() {
+        for(int i = 1; i < listNodes.size(); i++) {
+            if(listNodes.get(i).getRow() == getNextNode().getRow() && listNodes.get(i).getCol() == getNextNode().getCol()) {
                 return true;
             }
         }

@@ -27,11 +27,13 @@ public class Board extends JPanel implements ActionListener{
     
     private int deltaTime;
     private Timer timer;
+    private int countFoods;
     private Snake snake;
     private Food food;
     private SpecialFood specialFood;
     private Node node;
     private MyKeyAdapter keyAdapter;
+    private ScoreBoard scoreBoard;
     private PauseDialog pauseDialog;
     private GameOverDialog gameOverDialog;
     
@@ -56,10 +58,14 @@ public class Board extends JPanel implements ActionListener{
         timer.start();
     }
     
+    public void setScoreBoard(ScoreBoard scoreBoard) {
+        this.scoreBoard = scoreBoard;
+    }
+    
     public void processGameOver() {
         timer.stop();
-        //String sb = "" + scoreBoard.getScore();
-        //scoreBoard.setText("GAMEOVER!" + " Your score was: " + sb);
+        String sb = "" + scoreBoard.getScore();
+        scoreBoard.setText("GAMEOVER!" + " Your score was: " + sb);
         removeKeyListener(keyAdapter);
         gameOverDialog = new GameOverDialog((JFrame) getParent().getParent().getParent().getParent(), true, this);
         gameOverDialog.setLocationRelativeTo(this);
@@ -70,20 +76,43 @@ public class Board extends JPanel implements ActionListener{
     public boolean eat() {
         Node head = snake.getListNodes().get(0);
         if(head.getRow() == food.getRow()  && head.getCol() == food.getCol()) {
-            return true;
+            return true; 
         }
+        return false;
+    }
+    
+    public boolean eatSpecial() {
+        if(specialFood != null) {
+           Node head = snake.getListNodes().get(0);
+            if(head.getRow() == specialFood.getRow() && head.getCol() == specialFood.getCol()) {
+                return true;
+            } 
+        }
+
         return false;
     }
     
     //Game Loop
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (!snake.hitWall()) {
+        if (!snake.hitWall() && !snake.hitSnake()) {
+            if(eatSpecial()) {
+                scoreBoard.increment(3);
+                snake.setCountGrowSnake(3);
+                specialFood = null;
+            }
             if(eat()) {
-                snake.move(true);
+                snake.setCountGrowSnake(1);
+                countFoods++;
+                scoreBoard.increment(1);
+                snake.move();
                 food = new Food(snake);
+                if(countFoods == 5) {
+                    specialFood = new SpecialFood(snake, 10);
+                    countFoods = 0;
+                }
             } else {
-                snake.move(false);
+                snake.move();
             }
             repaint();
             Toolkit.getDefaultToolkit().sync();
@@ -95,14 +124,14 @@ public class Board extends JPanel implements ActionListener{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if( snake != null) {
-            snake.draw(g, squareWidth(), squareHeight());
-        }
         if( food != null) {
             food.draw(g, squareWidth(), squareHeight());
         }
         if( specialFood != null) {
             specialFood.draw(g, squareWidth(), squareHeight());
+        }
+        if( snake != null) {
+            snake.draw(g, squareWidth(), squareHeight());
         }
         Util.drawBorder(g, Color.blue, squareWidth(), squareHeight());
     }

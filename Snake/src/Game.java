@@ -15,6 +15,7 @@ public class Game extends javax.swing.JFrame {
      */
     public Game() {
         initComponents();
+        board.setScoreBoard(scoreBoard);
     }
 
     /**
@@ -27,7 +28,7 @@ public class Game extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        scoreBoard1 = new ScoreBoard();
+        scoreBoard = new ScoreBoard();
         board = new Board();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuGame = new javax.swing.JMenu();
@@ -38,10 +39,10 @@ public class Game extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Snake");
 
-        scoreBoard1.setText("scoreBoard1");
-        getContentPane().add(scoreBoard1, java.awt.BorderLayout.PAGE_END);
+        scoreBoard.setText("scoreBoard");
+        getContentPane().add(scoreBoard, java.awt.BorderLayout.PAGE_END);
 
-        board.setPreferredSize(new java.awt.Dimension(481, 481));
+        board.setPreferredSize(new java.awt.Dimension(392, 392));
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         jMenuGame.setText("Game");
@@ -107,6 +108,6 @@ public class Game extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuGame;
     private javax.swing.JMenuItem jMenuInitGame;
     private javax.swing.JMenuItem jMenuItem1;
-    private ScoreBoard scoreBoard1;
+    private ScoreBoard scoreBoard;
     // End of variables declaration//GEN-END:variables
 }
