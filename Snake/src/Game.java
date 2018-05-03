@@ -14,7 +14,10 @@ public class Game extends javax.swing.JFrame {
      * Creates new form Game
      */
     public Game() {
+        setLocationRelativeTo(null);
         initComponents();
+        StartGameDialog startGameDialog = new StartGameDialog(this, true);
+        startGameDialog.setVisible(true);
         board.setScoreBoard(scoreBoard);
     }
 
@@ -42,7 +45,8 @@ public class Game extends javax.swing.JFrame {
         scoreBoard.setText("scoreBoard");
         getContentPane().add(scoreBoard, java.awt.BorderLayout.PAGE_END);
 
-        board.setPreferredSize(new java.awt.Dimension(392, 392));
+        board.setBackground(new java.awt.Color(0, 204, 0));
+        board.setPreferredSize(new java.awt.Dimension(400, 300));
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         jMenuGame.setText("Game");

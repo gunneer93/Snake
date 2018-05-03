@@ -26,8 +26,9 @@ public class Board extends JPanel implements ActionListener{
     public static final int NUM_COLS = 30;
     
     private int deltaTime;
-    private Timer timer;
+    public Timer timer;
     private int countFoods;
+    private JFrame parentFrame;
     private Snake snake;
     private Food food;
     private SpecialFood specialFood;

@@ -106,7 +106,8 @@ public class PauseDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonRestartActionPerformed
 
     private void buttonResumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResumeActionPerformed
-        // TODO add your handling code here:
+        board.timer.start();
+        dispose();
     }//GEN-LAST:event_buttonResumeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

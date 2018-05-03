@@ -33,7 +33,7 @@ public class Snake {
 
     public void draw(Graphics g, int squareWidth, int squareHeight) {
         for (Node n : listNodes) {
-            Util.drawSquare(g, n, Color.cyan, squareWidth, squareHeight);
+            Util.drawSquare(g, n, Color.black, squareWidth, squareHeight);
         }
     }
 
