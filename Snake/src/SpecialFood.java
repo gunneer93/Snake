@@ -1,6 +1,9 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,13 +15,17 @@ import java.awt.Graphics;
  *
  * @author alu20491147x
  */
-public class SpecialFood {
+public class SpecialFood implements ActionListener{
     
     private int visibleTime;
-    
+    public Timer timer;
     private Node node;
+    private Board board;
     
-    public SpecialFood(Snake snake, int visibleTime) {
+    public SpecialFood(Snake snake, int visibleTime, Board board) {
+        this.board = board;
+        timer = new Timer(visibleTime, this);
+        timer.start();
         this.visibleTime = visibleTime;
         node = new Node(getRandomRow(), getRandomCol());
     }
@@ -41,6 +48,12 @@ public class SpecialFood {
     
     public int getCol() {
         return node.getCol();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        timer.stop();
+        board.removeSpecialFood();
     }
     
 }

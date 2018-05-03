@@ -92,6 +92,11 @@ public class Board extends JPanel implements ActionListener{
         return false;
     }
     
+    public void removeSpecialFood() {
+        specialFood.timer.stop();
+        specialFood = null;
+    }
+    
     //Game Loop
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -99,7 +104,7 @@ public class Board extends JPanel implements ActionListener{
             if(eatSpecial()) {
                 scoreBoard.increment(3);
                 snake.setCountGrowSnake(3);
-                specialFood = null;
+                removeSpecialFood();
             }
             if(eat()) {
                 snake.setCountGrowSnake(1);
@@ -107,8 +112,11 @@ public class Board extends JPanel implements ActionListener{
                 scoreBoard.increment(1);
                 snake.move();
                 food = new Food(snake);
-                if(countFoods == 5) {
-                    specialFood = new SpecialFood(snake, 10);
+                if(countFoods == 2) {
+                    if(specialFood == null) {
+                        specialFood = new SpecialFood(snake, 10000, this);
+                        
+                    }
                     countFoods = 0;
                 }
             } else {
