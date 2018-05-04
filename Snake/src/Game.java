@@ -16,9 +16,9 @@ public class Game extends javax.swing.JFrame {
     public Game() {
         setLocationRelativeTo(null);
         initComponents();
-        StartGameDialog startGameDialog = new StartGameDialog(this, true);
-        startGameDialog.setVisible(true);
         board.setScoreBoard(scoreBoard);
+        StartGameDialog startGameDialog = new StartGameDialog(this, true, board);
+        startGameDialog.setVisible(true);
     }
 
     /**
@@ -33,43 +33,22 @@ public class Game extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         scoreBoard = new ScoreBoard();
         board = new Board();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuGame = new javax.swing.JMenu();
-        jMenuInitGame = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Snake");
+        setPreferredSize(new java.awt.Dimension(402, 376));
 
         scoreBoard.setText("scoreBoard");
         getContentPane().add(scoreBoard, java.awt.BorderLayout.PAGE_END);
 
-        board.setBackground(new java.awt.Color(0, 204, 0));
-        board.setPreferredSize(new java.awt.Dimension(400, 300));
+        board.setBackground(new java.awt.Color(102, 255, 0));
+        board.setPreferredSize(new java.awt.Dimension(392, 302));
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
-
-        jMenuGame.setText("Game");
-
-        jMenuInitGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuInitGame.setText("Init Game");
-        jMenuInitGame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuInitGameActionPerformed(evt);
-            }
-        });
-        jMenuGame.add(jMenuInitGame);
-
-        jMenuBar1.add(jMenuGame);
-
-        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuInitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInitGameActionPerformed
-        board.initGame();
-    }//GEN-LAST:event_jMenuInitGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,9 +87,6 @@ public class Game extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Board board;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuGame;
-    private javax.swing.JMenuItem jMenuInitGame;
     private javax.swing.JMenuItem jMenuItem1;
     private ScoreBoard scoreBoard;
     // End of variables declaration//GEN-END:variables

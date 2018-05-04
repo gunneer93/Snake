@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Snake {
 
-    private ArrayList<Node> listNodes;
+    public ArrayList<Node> listNodes;
     private DirectionType direction;
     private int countGrowSnake;
 
@@ -33,7 +33,7 @@ public class Snake {
 
     public void draw(Graphics g, int squareWidth, int squareHeight) {
         for (Node n : listNodes) {
-            Util.drawSquare(g, n, Color.black, squareWidth, squareHeight);
+            Util.drawSquare(g, n, Color.yellow, squareWidth, squareHeight);
         }
     }
 

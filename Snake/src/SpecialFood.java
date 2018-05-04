@@ -31,7 +31,7 @@ public class SpecialFood implements ActionListener{
     }
     
     public void draw(Graphics g, int squareWidth, int squareHeight) {
-        Util.drawSquare(g, node, Color.yellow, squareWidth, squareHeight);
+        Util.drawSquare(g, node, Color.blue, squareWidth, squareHeight);
     }
     
     public int getRandomRow() { 

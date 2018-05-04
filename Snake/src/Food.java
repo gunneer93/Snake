@@ -18,6 +18,18 @@ public class Food {
     
     public Food(Snake snake) {
         node = new Node(getRandomRow(), getRandomCol());
+        while(checkSnakePosition(snake)) {
+            node = new Node(getRandomRow(), getRandomCol());
+        }
+    }
+    
+    public boolean checkSnakePosition(Snake snake) {
+        for(Node n: snake.listNodes) {
+            if(n.getRow() == node.getRow() && n.getCol() == node.getCol()) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public void draw(Graphics g, int squareWidth, int squareHeight) {
