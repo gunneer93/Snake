@@ -29,21 +29,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="buttonResume" alignment="0" max="32767" attributes="0"/>
-                          <Component id="buttonRestart" alignment="0" max="32767" attributes="0"/>
-                          <Component id="buttonExitGame" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="pausedLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="buttonResume" alignment="0" max="32767" attributes="0"/>
+                  <Component id="buttonRestart" alignment="0" max="32767" attributes="0"/>
+                  <Component id="buttonExitGame" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="pausedLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,11 +63,20 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="pausedLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Mono" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="PAUSED"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonResume">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Mono" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="RESUME"/>
       </Properties>
       <Events>
@@ -79,6 +85,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonRestart">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Mono" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="RESTART"/>
       </Properties>
       <Events>
@@ -87,6 +99,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonExitGame">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Mono" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="EXIT GAME"/>
       </Properties>
       <Events>
