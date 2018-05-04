@@ -11,13 +11,15 @@
 public class StartGameDialog extends javax.swing.JDialog {
 
     Board board;
+    GameModeDialog gameModeDialog;
     /**
      * Creates new form StartGameDialog
      */
-    public StartGameDialog(java.awt.Frame parent, boolean modal, Board board) {
+    public StartGameDialog(java.awt.Frame parent, boolean modal, Board board, GameModeDialog gameModeDialog) {
         super(parent, modal);
         setLocationRelativeTo(null);
         this.board = board;
+        this.gameModeDialog = gameModeDialog;
         initComponents();
     }
 
@@ -34,9 +36,11 @@ public class StartGameDialog extends javax.swing.JDialog {
         startButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(402, 376));
 
+        startButton.setBackground(new java.awt.Color(255, 204, 0));
+        startButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
         startButton.setText("PLAY");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +48,8 @@ public class StartGameDialog extends javax.swing.JDialog {
             }
         });
 
+        exitButton.setBackground(new java.awt.Color(255, 204, 51));
+        exitButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
         exitButton.setText("EXIT");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,8 +84,8 @@ public class StartGameDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        board.initGame();
         dispose();
+        gameModeDialog.setVisible(true);
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

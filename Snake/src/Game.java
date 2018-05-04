@@ -9,6 +9,8 @@
  * @author alu20491147x
  */
 public class Game extends javax.swing.JFrame {
+    
+    GameModeDialog gameModeDialog;
 
     /**
      * Creates new form Game
@@ -17,7 +19,8 @@ public class Game extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         initComponents();
         board.setScoreBoard(scoreBoard);
-        StartGameDialog startGameDialog = new StartGameDialog(this, true, board);
+        gameModeDialog = new GameModeDialog(this, true, board);
+        StartGameDialog startGameDialog = new StartGameDialog(this, true, board, gameModeDialog);
         startGameDialog.setVisible(true);
     }
 

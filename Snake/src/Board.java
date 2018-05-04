@@ -1,10 +1,13 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import javax.swing.ImageIcon;
+import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,19 +44,22 @@ public class Board extends JPanel implements ActionListener{
     
     public Board() {
         initValues();
-        timer = new Timer(deltaTime, this);
+        
         keyAdapter = new MyKeyAdapter();
     }
     
     public void initValues() {
         requestFocusInWindow();
-        deltaTime = 110; 
     }
     
     public void initGame() {
         removeKeyListener(keyAdapter);
         addKeyListener(keyAdapter);
         initValues();
+        if (timer != null) {
+            timer.stop();
+        }
+        timer = new Timer(deltaTime, this);
         scoreBoard.reset();
         snake = new Snake();
         food = new Food(snake);
@@ -114,7 +120,7 @@ public class Board extends JPanel implements ActionListener{
                 scoreBoard.increment(1);
                 snake.move();
                 food = new Food(snake);
-                if(countFoods == 2) {
+                if(countFoods == 5) {
                     if(specialFood == null) {
                         specialFood = new SpecialFood(snake, 10000, this);
                         
@@ -130,10 +136,15 @@ public class Board extends JPanel implements ActionListener{
             processGameOver();
         }
     }
+
+    public void setDeltaTime(int deltaTime) {
+        this.deltaTime = deltaTime;
+    }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        drawBackground(g);
         if( food != null) {
             food.draw(g, squareWidth(), squareHeight());
         }
@@ -152,6 +163,15 @@ public class Board extends JPanel implements ActionListener{
     
     private int squareHeight() {
         return getHeight() / NUM_ROWS;
+    }
+    
+    public void drawBackground(Graphics g) {
+        Dimension tamanio = getSize();
+        ImageIcon imagenFondo = new ImageIcon(getClass().
+        getResource("snake-background.png"));
+        g.drawImage(imagenFondo.getImage(), 0, 0,
+        tamanio.width, tamanio.height, null);
+        setOpaque(false); 
     }
     
     class MyKeyAdapter extends KeyAdapter {
