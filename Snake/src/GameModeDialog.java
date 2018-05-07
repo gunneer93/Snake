@@ -40,7 +40,7 @@ public class GameModeDialog extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(402, 376));
 
         easyButton.setBackground(new java.awt.Color(255, 204, 0));
-        easyButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
+        easyButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
         easyButton.setText("EASY");
         easyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +49,7 @@ public class GameModeDialog extends javax.swing.JDialog {
         });
 
         mediumButton.setBackground(new java.awt.Color(255, 204, 0));
-        mediumButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
+        mediumButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
         mediumButton.setText("MEDIUM");
         mediumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +58,7 @@ public class GameModeDialog extends javax.swing.JDialog {
         });
 
         hardButton.setBackground(new java.awt.Color(255, 204, 0));
-        hardButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
+        hardButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
         hardButton.setText("HARD");
         hardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,33 +66,32 @@ public class GameModeDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Noto Mono", 1, 20)); // NOI18N
         jLabel1.setText("SELECT MODE");
 
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagePanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(mediumButton)
+                .addGap(18, 18, 18)
+                .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(imagePanel1Layout.createSequentialGroup()
-                .addGroup(imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(imagePanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(mediumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(imagePanel1Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel1)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(122, 122, 122)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagePanel1Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+                .addContainerGap(194, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(easyButton)
                     .addComponent(hardButton)
@@ -107,20 +106,20 @@ public class GameModeDialog extends javax.swing.JDialog {
 
     private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
         board.setDeltaTime(200);
-        board.initGame();
         dispose();
+        board.initCounter();
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void mediumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumButtonActionPerformed
         board.setDeltaTime(150);
-        board.initGame();
         dispose();
+        board.initCounter();
     }//GEN-LAST:event_mediumButtonActionPerformed
 
     private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
         board.setDeltaTime(110);
-        board.initGame();
         dispose();
+        board.initCounter();
     }//GEN-LAST:event_hardButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

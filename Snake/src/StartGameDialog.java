@@ -40,7 +40,7 @@ public class StartGameDialog extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(402, 376));
 
         startButton.setBackground(new java.awt.Color(255, 204, 0));
-        startButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
+        startButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
         startButton.setText("PLAY");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,8 +48,8 @@ public class StartGameDialog extends javax.swing.JDialog {
             }
         });
 
-        exitButton.setBackground(new java.awt.Color(255, 204, 51));
-        exitButton.setFont(new java.awt.Font("Noto Mono", 1, 12)); // NOI18N
+        exitButton.setBackground(new java.awt.Color(255, 204, 0));
+        exitButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
         exitButton.setText("EXIT");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +71,7 @@ public class StartGameDialog extends javax.swing.JDialog {
         imagePanel2Layout.setVerticalGroup(
             imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(imagePanel2Layout.createSequentialGroup()
-                .addContainerGap(226, Short.MAX_VALUE)
+                .addContainerGap(219, Short.MAX_VALUE)
                 .addGroup(imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton)
                     .addComponent(startButton))

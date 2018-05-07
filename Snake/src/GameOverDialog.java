@@ -104,7 +104,8 @@ public class GameOverDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonNoActionPerformed
 
     private void buttonYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonYesActionPerformed
-        board.initGame();
+        
+        board.initCounter();
         dispose();
     }//GEN-LAST:event_buttonYesActionPerformed
 

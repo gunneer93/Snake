@@ -32,8 +32,9 @@ public class Snake {
     }
 
     public void draw(Graphics g, int squareWidth, int squareHeight) {
+        Color snake = new Color(255,204,0);
         for (Node n : listNodes) {
-            Util.drawSquare(g, n, Color.yellow, squareWidth, squareHeight);
+            Util.drawSquare(g, n, snake, squareWidth, squareHeight);
         }
     }
 

@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -40,12 +41,16 @@ public class Board extends JPanel implements ActionListener{
     private ScoreBoard scoreBoard;
     private PauseDialog pauseDialog;
     private GameOverDialog gameOverDialog;
+    private JLabel labelCountDown;
     
     
     public Board() {
         initValues();
-        
         keyAdapter = new MyKeyAdapter();
+    }
+    
+    public void setLabelCountDown(JLabel labelCountDown) {
+        this.labelCountDown = labelCountDown;
     }
     
     public void initValues() {
@@ -56,6 +61,7 @@ public class Board extends JPanel implements ActionListener{
         removeKeyListener(keyAdapter);
         addKeyListener(keyAdapter);
         initValues();
+        
         if (timer != null) {
             timer.stop();
         }
@@ -64,6 +70,17 @@ public class Board extends JPanel implements ActionListener{
         snake = new Snake();
         food = new Food(snake);
         timer.start();
+    }
+    
+    public void initCounter() {
+        CountDown cd = new CountDown(labelCountDown, this);
+        cd.timerDisplay();
+    }
+    
+    public void cleanBoard() {
+        snake = null;
+        food = null;
+        scoreBoard.reset();
     }
     
     public void setScoreBoard(ScoreBoard scoreBoard) {

@@ -33,7 +33,8 @@ public class Food {
     }
     
     public void draw(Graphics g, int squareWidth, int squareHeight) {
-        Util.drawSquare(g, node, Color.red, squareWidth, squareHeight);
+        Color food = new Color(255,71,26);
+        Util.drawSquare(g, node, food, squareWidth, squareHeight);
     }
     
     public int getRandomRow() { 

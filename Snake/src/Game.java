@@ -18,6 +18,7 @@ public class Game extends javax.swing.JFrame {
     public Game() {
         setLocationRelativeTo(null);
         initComponents();
+        board.setLabelCountDown(countDown);
         board.setScoreBoard(scoreBoard);
         gameModeDialog = new GameModeDialog(this, true, board);
         StartGameDialog startGameDialog = new StartGameDialog(this, true, board, gameModeDialog);
@@ -36,6 +37,7 @@ public class Game extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         scoreBoard = new ScoreBoard();
         board = new Board();
+        countDown = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -46,8 +48,27 @@ public class Game extends javax.swing.JFrame {
         scoreBoard.setText("scoreBoard");
         getContentPane().add(scoreBoard, java.awt.BorderLayout.PAGE_END);
 
-        board.setBackground(new java.awt.Color(102, 255, 0));
-        board.setPreferredSize(new java.awt.Dimension(392, 302));
+        countDown.setFont(new java.awt.Font("Noto Mono", 1, 78)); // NOI18N
+        countDown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        countDown.setText("0");
+
+        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
+        board.setLayout(boardLayout);
+        boardLayout.setHorizontalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(boardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(countDown)
+                .addContainerGap(270, Short.MAX_VALUE))
+        );
+        boardLayout.setVerticalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardLayout.createSequentialGroup()
+                .addContainerGap(187, Short.MAX_VALUE)
+                .addComponent(countDown, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -90,6 +111,7 @@ public class Game extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Board board;
+    private javax.swing.JLabel countDown;
     private javax.swing.JMenuItem jMenuItem1;
     private ScoreBoard scoreBoard;
     // End of variables declaration//GEN-END:variables
