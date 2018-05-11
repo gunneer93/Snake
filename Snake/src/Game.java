@@ -11,6 +11,7 @@
 public class Game extends javax.swing.JFrame {
     
     GameModeDialog gameModeDialog;
+    CustomSettingsDialog customSettingsDialog;
 
     /**
      * Creates new form Game
@@ -20,7 +21,8 @@ public class Game extends javax.swing.JFrame {
         initComponents();
         board.setLabelCountDown(countDown);
         board.setScoreBoard(scoreBoard);
-        gameModeDialog = new GameModeDialog(this, true, board);
+        customSettingsDialog = new CustomSettingsDialog(this, true, board);
+        gameModeDialog = new GameModeDialog(this, true, board, customSettingsDialog);
         StartGameDialog startGameDialog = new StartGameDialog(this, true, board, gameModeDialog);
         startGameDialog.setVisible(true);
     }

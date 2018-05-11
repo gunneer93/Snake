@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import javax.swing.ImageIcon;
-import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,12 +25,8 @@ import javax.swing.Timer;
  */
 public class Board extends JPanel implements ActionListener{
     
-    public static final int NUM_ROWS = 30;
-    public static final int NUM_COLS = 30;
-    
-    private int deltaTime;
-    public Timer timer;
     private int countFoods;
+    public Timer timer;
     private JFrame parentFrame;
     private Snake snake;
     private Food food;
@@ -58,14 +53,14 @@ public class Board extends JPanel implements ActionListener{
     }
     
     public void initGame() {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
         removeKeyListener(keyAdapter);
         addKeyListener(keyAdapter);
         initValues();
-        
         if (timer != null) {
             timer.stop();
         }
-        timer = new Timer(deltaTime, this);
+        timer = new Timer(cs.getDeltaTime(), this);
         scoreBoard.reset();
         snake = new Snake();
         food = new Food(snake);
@@ -77,19 +72,14 @@ public class Board extends JPanel implements ActionListener{
         cd.timerDisplay();
     }
     
-    public void cleanBoard() {
-        snake = null;
-        food = null;
-        scoreBoard.reset();
-    }
-    
     public void setScoreBoard(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
     }
     
     public void processGameOver() {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
         timer.stop();
-        String sb = "" + scoreBoard.getScore();
+        String sb = "" + cs.getScore();
         scoreBoard.setText("GAMEOVER!" + " Your score was: " + sb);
         removeKeyListener(keyAdapter);
         gameOverDialog = new GameOverDialog((JFrame) getParent().getParent().getParent().getParent(), true, this);
@@ -153,10 +143,6 @@ public class Board extends JPanel implements ActionListener{
             processGameOver();
         }
     }
-
-    public void setDeltaTime(int deltaTime) {
-        this.deltaTime = deltaTime;
-    }
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -175,19 +161,19 @@ public class Board extends JPanel implements ActionListener{
     }
     
     private int squareWidth() {
-        return getWidth() / NUM_COLS;
+        return getWidth() / ConfigSingleton.getInstance().getNumCols();
     }
     
     private int squareHeight() {
-        return getHeight() / NUM_ROWS;
+        return getHeight() / ConfigSingleton.getInstance().getNumRows();
     }
     
     public void drawBackground(Graphics g) {
-        Dimension tamanio = getSize();
+        Dimension dimension = getSize();
         ImageIcon imagenFondo = new ImageIcon(getClass().
         getResource("snake-background.png"));
         g.drawImage(imagenFondo.getImage(), 0, 0,
-        tamanio.width, tamanio.height, null);
+        dimension.width, dimension.height, null);
         setOpaque(false); 
     }
     

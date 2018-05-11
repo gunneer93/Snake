@@ -11,13 +11,15 @@
 public class GameModeDialog extends javax.swing.JDialog {
 
     Board board;
+    CustomSettingsDialog customSettingsDialog;
     /**
      * Creates new form GameModeDialog
      */
-    public GameModeDialog(java.awt.Frame parent, boolean modal, Board board) {
+    public GameModeDialog(java.awt.Frame parent, boolean modal, Board board, CustomSettingsDialog customSettingsDialog) {
         super(parent, modal);
         setLocationRelativeTo(null);
         this.board = board;
+        this.customSettingsDialog = customSettingsDialog;
         initComponents();
     }
 
@@ -35,6 +37,7 @@ public class GameModeDialog extends javax.swing.JDialog {
         mediumButton = new javax.swing.JButton();
         hardButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        customButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(402, 376));
@@ -69,34 +72,47 @@ public class GameModeDialog extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Noto Mono", 1, 20)); // NOI18N
         jLabel1.setText("SELECT MODE");
 
+        customButton.setBackground(new java.awt.Color(255, 204, 0));
+        customButton.setFont(new java.awt.Font("Noto Mono", 1, 18)); // NOI18N
+        customButton.setText("CUSTOM");
+        customButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(imagePanel1Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagePanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(easyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(mediumButton)
+                .addGap(18, 18, 18)
+                .addGroup(imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(customButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mediumButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(hardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
-            .addGroup(imagePanel1Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imagePanel1Layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
+                .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(easyButton)
+                    .addComponent(mediumButton)
                     .addComponent(hardButton)
-                    .addComponent(mediumButton))
-                .addGap(32, 32, 32))
+                    .addComponent(easyButton))
+                .addGap(15, 15, 15)
+                .addComponent(customButton)
+                .addContainerGap())
         );
 
         getContentPane().add(imagePanel1, java.awt.BorderLayout.CENTER);
@@ -105,24 +121,30 @@ public class GameModeDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void easyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyButtonActionPerformed
-        board.setDeltaTime(200);
+        ConfigSingleton.getInstance().setDeltaTime(210);
         dispose();
         board.initCounter();
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void mediumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumButtonActionPerformed
-        board.setDeltaTime(150);
+        ConfigSingleton.getInstance().setDeltaTime(150);
         dispose();
         board.initCounter();
     }//GEN-LAST:event_mediumButtonActionPerformed
 
     private void hardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardButtonActionPerformed
-        board.setDeltaTime(110);
+        ConfigSingleton.getInstance().setDeltaTime(100);
         dispose();
         board.initCounter();
     }//GEN-LAST:event_hardButtonActionPerformed
 
+    private void customButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButtonActionPerformed
+        dispose();
+        customSettingsDialog.setVisible(true);
+    }//GEN-LAST:event_customButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton customButton;
     private javax.swing.JButton easyButton;
     private javax.swing.JButton hardButton;
     private ImagePanel imagePanel1;

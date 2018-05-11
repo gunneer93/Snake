@@ -19,12 +19,13 @@ public class Snake {
     private int countGrowSnake;
 
     public Snake() {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
         countGrowSnake = 0;
         direction = DirectionType.RIGHT;
         listNodes = new ArrayList<Node>(3);
-        listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2));
-        listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2 - 1));
-        listNodes.add(new Node(Board.NUM_ROWS / 2, Board.NUM_COLS / 2 - 2));
+        listNodes.add(new Node(cs.getNumRows() / 2, cs.getNumCols() / 2));
+        listNodes.add(new Node(cs.getNumRows() / 2, cs.getNumCols() / 2 - 1));
+        listNodes.add(new Node(cs.getNumRows() / 2, cs.getNumCols() / 2 - 2));
     }
 
     public void setCountGrowSnake(int countGrowSnake) {
@@ -83,10 +84,11 @@ public class Snake {
     }
 
     public boolean hitWall() {
-        if (getNextNode().getRow() < 0 || getNextNode().getRow() >= Board.NUM_ROWS) {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
+        if (getNextNode().getRow() < 0 || getNextNode().getRow() >= cs.getNumRows()) {
             return true;
         } else {
-            if (getNextNode().getCol() < 0 || getNextNode().getCol() >= Board.NUM_COLS) {
+            if (getNextNode().getCol() < 0 || getNextNode().getCol() >= cs.getNumCols()) {
                 return true;
             }
         }

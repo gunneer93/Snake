@@ -28,8 +28,9 @@ public class Util {
     }
     
     public static void drawBorder(Graphics g, Color color, int squareWidth, int squareHeight) {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
         g.setColor(Color.black);
-        g.drawRect(0, 0, Board.NUM_COLS * squareWidth, Board.NUM_ROWS * squareHeight);
+        g.drawRect(0, 0, cs.getNumCols() * squareWidth, cs.getNumRows() * squareHeight);
     }
     
 }

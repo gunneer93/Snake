@@ -13,25 +13,22 @@ import javax.swing.JLabel;
  */
 public class ScoreBoard extends JLabel{
     
-    private int score;
-    
     public ScoreBoard() {
         super();
-        score = 3;
+        ConfigSingleton.getInstance().setScore(3);
     }
     
     public void increment(int points) {
+        ConfigSingleton cs = ConfigSingleton.getInstance();
+        int score = cs.getScore();
         score += points;
-        setText("Length:" + score);
+        cs.setScore(score);
+        setText("Length:" + cs.getScore());
     }
     
     public void reset() {
-        score = 0;
-        setText("Length:" + 0);
-    }
-    
-    public int getScore() {
-        return score;
-    }
-    
+        ConfigSingleton cs = ConfigSingleton.getInstance();
+        cs.setScore(0);
+        setText("Length:" + cs.getScore());
+    }  
 }
