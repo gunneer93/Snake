@@ -15,58 +15,29 @@ import javax.swing.Timer;
  *
  * @author alu20491147x
  */
-public class SpecialFood implements ActionListener{
+public class SpecialFood extends Food implements ActionListener {
     
-    private int visibleTime;
     public Timer timer;
-    private Node node;
     private Board board;
     
     public SpecialFood(Snake snake, int visibleTime, Board board) {
+        super(snake);
         this.board = board;
         timer = new Timer(visibleTime, this);
         timer.start();
-        this.visibleTime = visibleTime;
-        node = new Node(getRandomRow(), getRandomCol());
-        while(checkSnakePosition(snake)) {
-            node = new Node(getRandomRow(), getRandomCol());
-        }
-    }
-    
-    public boolean checkSnakePosition(Snake snake) {
-        for(Node n: snake.listNodes) {
-            if(n.getRow() == node.getRow() && n.getCol() == node.getCol()) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public void draw(Graphics g, int squareWidth, int squareHeight) {
-        Color special = new Color(255,255,77);
-        Util.drawSquare(g, node, special, squareWidth, squareHeight);
-    }
-    
-    public int getRandomRow() { 
-        return (int) (Math.random() * ConfigSingleton.getInstance().getNumRows());
-    }
-    
-    public int getRandomCol() {
-        return (int) (Math.random() * ConfigSingleton.getInstance().getNumCols());
-    }
-    
-    public int getRow() {
-        return node.getRow();
-    }
-    
-    public int getCol() {
-        return node.getCol();
+        visibleTime = ConfigSingleton.getInstance().getSpecialVisibleTime();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         timer.stop();
         board.removeSpecialFood();
+    }
+
+    @Override
+    public void draw(Graphics g, int squareWidth, int squareHeight) {
+       Color food = new Color(255,255,26);
+       Util.drawSquare(g, node, food, squareWidth, squareHeight);
     }
     
 }

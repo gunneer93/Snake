@@ -21,16 +21,46 @@ public class ConfigSingleton implements Serializable{
     
     private int score;
     private int deltaTime;
+    private int specialVisibleTime;
     private static final int NUM_ROWS = 30;
     private static final int NUM_COLS = 30;
     private int numRows;
     private int numCols;
+    private int countFoods;
+    private int foods;
     
     private ConfigSingleton(){
         score = 0;
         deltaTime = 200;
         numRows = NUM_ROWS;
         numCols = NUM_COLS;
+        countFoods = 0;
+        specialVisibleTime = 10000;
+        foods = 5;
+    }
+    
+    public int getFoods() {
+        return foods;
+    }
+
+    public void setFoods(int foods) {
+        this.foods = foods;
+    }
+
+    public int getSpecialVisibleTime() {
+        return specialVisibleTime;
+    }
+
+    public void setSpecialVisibleTime(int specialVisibleTime) {
+        this.specialVisibleTime = specialVisibleTime * 1000;
+    }
+
+    public int getCountFoods() {
+        return countFoods;
+    }
+
+    public void setCountFoods(int countFoods) {
+        this.countFoods = countFoods;
     }
 
     public int getNumRows() {

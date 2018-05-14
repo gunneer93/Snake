@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,7 +30,8 @@ public class Board extends JPanel implements ActionListener{
     public Timer timer;
     private JFrame parentFrame;
     private Snake snake;
-    private Food food;
+    private FoodFactory factory;
+    private NormalFood normalFood;
     private SpecialFood specialFood;
     private Node node;
     private MyKeyAdapter keyAdapter;
@@ -63,8 +65,18 @@ public class Board extends JPanel implements ActionListener{
         timer = new Timer(cs.getDeltaTime(), this);
         scoreBoard.reset();
         snake = new Snake();
-        food = new Food(snake);
+        factory = new FoodFactory(snake, this);
+        createFood();
         timer.start();
+    }
+    
+    public void createFood() {
+        Food food = factory.getFood();
+        if(food instanceof NormalFood) {
+            normalFood = (NormalFood) food;
+        } else {
+            specialFood = (SpecialFood) food;
+        }
     }
     
     public void initCounter() {
@@ -84,15 +96,17 @@ public class Board extends JPanel implements ActionListener{
         removeKeyListener(keyAdapter);
         gameOverDialog = new GameOverDialog((JFrame) getParent().getParent().getParent().getParent(), true, this);
         gameOverDialog.setLocationRelativeTo(this);
-        gameOverDialog.getContentPane().setBackground(Color.white);
+        gameOverDialog.getContentPane().setBackground(Color.green);
         gameOverDialog.setVisible(true);
     }
     
     public boolean eat() {
-        Node head = snake.getListNodes().get(0);
-        if(head.getRow() == food.getRow()  && head.getCol() == food.getCol()) {
-            return true; 
-        }
+        if(normalFood!=null) {
+            Node head = snake.getListNodes().get(0);
+            if(head.getRow() == normalFood.getRow()  && head.getCol() == normalFood.getCol()) {
+                return true; 
+            }
+        } 
         return false;
     }
     
@@ -110,6 +124,7 @@ public class Board extends JPanel implements ActionListener{
     public void removeSpecialFood() {
         specialFood.timer.stop();
         specialFood = null;
+        createFood();
     }
     
     //Game Loop
@@ -120,20 +135,14 @@ public class Board extends JPanel implements ActionListener{
                 scoreBoard.increment(3);
                 snake.setCountGrowSnake(3);
                 removeSpecialFood();
+                createFood();
             }
             if(eat()) {
                 snake.setCountGrowSnake(1);
-                countFoods++;
                 scoreBoard.increment(1);
                 snake.move();
-                food = new Food(snake);
-                if(countFoods == 5) {
-                    if(specialFood == null) {
-                        specialFood = new SpecialFood(snake, 10000, this);
-                        
-                    }
-                    countFoods = 0;
-                }
+                normalFood = null;
+                createFood();
             } else {
                 snake.move();
             }
@@ -148,8 +157,8 @@ public class Board extends JPanel implements ActionListener{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawBackground(g);
-        if( food != null) {
-            food.draw(g, squareWidth(), squareHeight());
+        if( normalFood != null) {
+            normalFood.draw(g, squareWidth(), squareHeight());
         }
         if( specialFood != null) {
             specialFood.draw(g, squareWidth(), squareHeight());
